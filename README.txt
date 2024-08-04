@@ -1,28 +1,92 @@
-REMIX DEFAULT WORKSPACE
+# Food Supply Chain Management Smart Contract
 
-Remix default workspace is present when:
-i. Remix loads for the very first time 
-ii. A new workspace is created with 'Default' template
-iii. There are no files existing in the File Explorer
+The **FoodSupplyChain** smart contract is designed to track the authenticity and movement of farm products through their lifecycle, from harvest to consumer purchase. The contract uses blockchain technology to ensure transparency and traceability in the food supply chain.
 
-This workspace contains 3 directories:
+## Key Functions
 
-1. 'contracts': Holds three contracts with increasing levels of complexity.
-2. 'scripts': Contains four typescript files to deploy a contract. It is explained below.
-3. 'tests': Contains one Solidity test file for 'Ballot' contract & one JS test file for 'Storage' contract.
+### `harvestProduct`
 
-SCRIPTS
+- **Description**: Registers a new product by assigning it a unique asset ID and records its initial details.
+- **Parameters**:
+  - `_productDescription`: Description of the product.
+  - `_producerName`: Name of the producer.
+  - `_producerAddress`: Address of the producer.
+  - `_harvestDate`: Date when the product was harvested (timestamp).
+- **Returns**: The unique `assetId` of the newly created product.
 
-The 'scripts' folder has four typescript files which help to deploy the 'Storage' contract using 'web3.js' and 'ethers.js' libraries.
+### `transferToDistributor`
 
-For the deployment of any other contract, just update the contract's name from 'Storage' to the desired contract and provide constructor arguments accordingly 
-in the file `deploy_with_ethers.ts` or  `deploy_with_web3.ts`
+- **Description**: Transfers the product from the producer to the distributor and updates the product’s details.
+- **Parameters**:
+  - `_assetId`: The ID of the asset to transfer.
+  - `_distributerName`: Name of the distributor.
+  - `_distributerAddress`: Address of the distributor.
+  - `_prodToDistDate`: Date when the product was transferred to the distributor (timestamp).
 
-In the 'tests' folder there is a script containing Mocha-Chai unit tests for 'Storage' contract.
+### `transferToRetailer`
 
-To run a script, right click on file name in the file explorer and click 'Run'. Remember, Solidity file must already be compiled.
-Output from script will appear in remix terminal.
+- **Description**: Transfers the product from the distributor to the retailer and updates the product’s details.
+- **Parameters**:
+  - `_assetId`: The ID of the asset to transfer.
+  - `_retailerName`: Name of the retailer.
+  - `_retailerAddress`: Address of the retailer.
+  - `_distToRetaDate`: Date when the product was transferred to the retailer (timestamp).
 
-Please note, require/import is supported in a limited manner for Remix supported modules.
-For now, modules supported by Remix are ethers, web3, swarmgw, chai, multihashes, remix and hardhat only for hardhat.ethers object/plugin.
-For unsupported modules, an error like this will be thrown: '<module_name> module require is not supported by Remix IDE' will be shown.
+### `sellToConsumer`
+
+- **Description**: Marks the product as sold when purchased by a consumer.
+- **Parameters**:
+  - `_assetId`: The ID of the asset being purchased.
+
+## Data Structures
+
+### `FarmProduct`
+
+- **Description**: Struct to store details of each farm product including asset ID, product description, producer and distributor details, and transfer dates.
+- **Fields**:
+  - `assetId`: Unique identifier for the product.
+  - `productDescription`: Description of the product.
+  - `producerName`: Name of the producer.
+  - `producerAddress`: Address of the producer.
+  - `harvestDate`: Date of harvest.
+  - `distributerName`: Name of the distributor.
+  - `distributerAddress`: Address of the distributor.
+  - `prodToDistDate`: Date of transfer from producer to distributor.
+  - `retailerName`: Name of the retailer.
+  - `retailerAddress`: Address of the retailer.
+  - `distToRetaDate`: Date of transfer from distributor to retailer.
+  - `isSold`: Boolean indicating whether the product has been sold.
+
+## Events
+
+### `ProductHarvested`
+
+- **Description**: Emitted when a new product is harvested and registered.
+- **Parameters**:
+  - `assetId`: Unique identifier of the product.
+  - `productDescription`: Description of the product.
+  - `producerName`: Name of the producer.
+  - `producerAddress`: Address of the producer.
+  - `harvestDate`: Date of harvest.
+
+### `ProductTransferred`
+
+- **Description**: Emitted when the product is transferred between stages (producer to distributor, distributor to retailer).
+- **Parameters**:
+  - `assetId`: Unique identifier of the product.
+  - `fromStage`: Stage from which the product was transferred.
+  - `toStage`: Stage to which the product was transferred.
+  - `fromAddress`: Address from which the product was transferred.
+  - `toAddress`: Address to which the product was transferred.
+  - `transferDate`: Date of transfer.
+
+### `ProductSold`
+
+- **Description**: Emitted when the product is sold to a consumer.
+- **Parameters**:
+  - `assetId`: Unique identifier of the product.
+  - `buyerAddress`: Address of the consumer.
+
+## Overview
+
+This contract ensures that every step in the food supply chain is recorded on the blockchain, providing a transparent and immutable record of the product's journey from farm to table.
