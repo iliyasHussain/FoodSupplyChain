@@ -1,0 +1,335 @@
+{
+	"compiler": {
+		"version": "0.8.25+commit.b61c2a91"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "assetId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "productDescription",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "producerName",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "producerAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "harvestDate",
+						"type": "uint256"
+					}
+				],
+				"name": "ProductHarvested",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "assetId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "buyerAddress",
+						"type": "address"
+					}
+				],
+				"name": "ProductSold",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "assetId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "fromStage",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "toStage",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "fromAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "toAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "transferDate",
+						"type": "uint256"
+					}
+				],
+				"name": "ProductTransferred",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "assetId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_productDescription",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_producerName",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_producerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_harvestDate",
+						"type": "uint256"
+					}
+				],
+				"name": "harvestProduct",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "products",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "assetId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "productDescription",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "producerName",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "producerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "harvestDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "distributerName",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "distributerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "prodToDistDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "retailerName",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "retailerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "distToRetaDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isSold",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_assetId",
+						"type": "uint256"
+					}
+				],
+				"name": "sellToConsumer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_assetId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_distributerName",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_distributerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_prodToDistDate",
+						"type": "uint256"
+					}
+				],
+				"name": "transferToDistributor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_assetId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_retailerName",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_retailerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_distToRetaDate",
+						"type": "uint256"
+					}
+				],
+				"name": "transferToRetailer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/FoodSupplyChain.sol": "FoodSupplyChain"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/FoodSupplyChain.sol": {
+			"keccak256": "0x36d0a947e91abf9b76c1e07f8684579141cedbdf1025159479026c44b9d21c2c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://bd414e6feab5faea69a69375cb982ac829ca34d7b61615fdc6d71443491c2f01",
+				"dweb:/ipfs/QmNtAghyyBZovaHbgkU9AYkAfSaddx3Ai54ttuZKxd3UEV"
+			]
+		}
+	},
+	"version": 1
+}
